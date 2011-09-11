@@ -13,15 +13,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 
 public class StreetLightZMain extends JavaPlugin{
-
+	Logger Log = Logger.getLogger("Minecraft");
 	public static ArrayList<Player> players = new ArrayList<Player>();
 	public static ArrayList<Location> lights = new ArrayList<Location>();
-	private StreetLightZBlockListener bListener = new StreetLightZBlockListener(this);
-	
-	Logger Log = Logger.getLogger("Minecraft");
 	public static Configuration config;
 	public static int LightsOffTime;
 	public static int LightsOnTime;
+	private StreetLightZBlockListener bListener = new StreetLightZBlockListener(this);
 	//@Override
 	public void onDisable() {
 		Log.info("[StreetLightZ] StreetLightZ plugin succesfully disabled!");
@@ -45,9 +43,6 @@ public class StreetLightZMain extends JavaPlugin{
 		getCommand("StreetLightZ").setExecutor(new StreetLightZCmdExecutor());
 		
 		Log.info("[StreetLightZ] StreetLightZ plugin succesfully enabled!");
-		
-
-		
 	}
 	
 	public static void TimeChecker(){
@@ -70,15 +65,12 @@ public class StreetLightZMain extends JavaPlugin{
 				Block block = Bukkit.getServer().getWorld("world").getBlockAt(blockloc);
 				block.setType(Material.REDSTONE_TORCH_OFF);
 			}
-
 		}else{
 		// turn lights on
 			for(Location blockloc : lights){
 				Block block = Bukkit.getServer().getWorld("world").getBlockAt(blockloc);
 				block.setType(Material.TORCH);
 			}
-			
-			
 		}
 	}
 }
