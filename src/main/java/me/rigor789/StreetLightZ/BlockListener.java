@@ -46,9 +46,7 @@ public class BlockListener implements Listener {
 		Block block             = event.getBlock();
         LightsManager manager   = LightsManager.getInstance();
 
-        if(!SessionManager.getInstance().hasSession(player)) return;
-
-		for (BlockFace face : faces){
+		for (BlockFace face : faces) {
 		    Block attached = block.getRelative(face);
             if (!manager.hasLight(attached)) continue;
             if (!(attached.getType() == Material.TORCH || attached.getType() == Material.REDSTONE_TORCH_OFF)) continue;
@@ -57,7 +55,7 @@ public class BlockListener implements Listener {
             Block attachedTo = attached.getRelative(torchAttachedFace);
 
             if (!attachedTo.equals(block)) continue;
-            if (!SessionManager.getInstance().hasSession(player)) {
+            if (SessionManager.getInstance().hasSession(player)) {
                 EditSession session = SessionManager.getInstance().getSession(player);
                 attached.setType(Material.TORCH);
                 session.removeBlock(attached);
@@ -75,7 +73,7 @@ public class BlockListener implements Listener {
             block.setType(Material.TORCH);
             player.sendMessage(ChatColor.YELLOW + "Torch removed");
             session.removeBlock(block);
-        }else{
+        } else {
             event.setCancelled(true);
             player.sendMessage(ChatColor.GOLD + "That torch is part of the lighting! Can't remove it!");
         }

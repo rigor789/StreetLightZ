@@ -2,7 +2,9 @@ package me.rigor789.StreetLightZ;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class StreetLightZ extends JavaPlugin{
+public class StreetLightZ extends JavaPlugin {
+
+    private static StreetLightZ instance;
 
     @Override
 	public void onDisable() {
@@ -11,11 +13,16 @@ public class StreetLightZ extends JavaPlugin{
 
     @Override
 	public void onEnable() {
+        instance = this;
         getConfig().options().copyDefaults(true);
         this.getServer().getPluginManager().registerEvents(new BlockListener(), this);
 		getCommand("StreetLightZ").setExecutor(new CmdExecutor());
 		getLogger().info("[StreetLightZ] StreetLightZ plugin succesfully enabled!");
 	}
+
+    public static StreetLightZ getInstance() {
+        return instance;
+    }
 	
 //	public static void TimeChecker() {
 //		long Time = Bukkit.getServer().getWorld("world").getTime();

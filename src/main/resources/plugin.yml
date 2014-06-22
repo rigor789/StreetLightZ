@@ -1,6 +1,6 @@
 name: StreetLightZ
-version: 0.1
-main: me.rigi.StreetLightZ.StreetLightZMain
+version: 1.0
+main: me.rigor789.StreetLightZ.StreetLightZ
 author: rigor789
 permissions:
     streetlightz.edit:
@@ -8,6 +8,6 @@ permissions:
         default: op
 commands:
  StreetLightZ:
-   description: StreetLightZ commandbase!.
+   description: StreetLightZ base command!
    aliases: [sl]
    permissions: 'streetlightz.edit'
